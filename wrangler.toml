@@ -1,0 +1,6 @@
+name = "qobuz-dl"
+main = "src/index.ts"
+compatibility_date = "2024-12-31"
+
+[vars]
+QOBUZ_API_BASE = "https://www.qobuz.com/api.json/0.2/"
