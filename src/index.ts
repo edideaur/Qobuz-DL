@@ -53,6 +53,10 @@ const schemas = {
     downloadMusic: z.object({
         track_id: z.preprocess((a) => parseInt(a as string), z.number().min(0)),
         quality: z.enum(['27', '7', '6', '5']).default('27')
+    }),
+    track: z.object({
+        q: z.string().min(1),
+        quality: z.enum(['27', '7', '6', '5']).default('27')
     })
 };
 
@@ -107,6 +111,15 @@ export default {
                 const codes = getCountries();
                 if (codes.length === 0) return json({ success: false, error: 'No countries configured' }, 200, origin);
                 return json({ success: true, data: codes }, 200, origin);
+            }
+
+            if (path === '/api/track') {
+                const { q, quality } = schemas.track.parse(params);
+                const results = await search(q, 1, 0, country, env);
+                const track = results?.tracks?.items?.[0];
+                if (!track) return json({ success: false, error: 'Track not found' }, 404, origin);
+                const url = await getDownloadURL(track.id, quality, country, env);
+                return json({ success: true, data: { url } }, 200, origin);
             }
 
             if (path === '/api/download-music') {
