@@ -6,7 +6,9 @@ const ALLOWED_ORIGINS = new Set([
     'https://monochrome.pages.dev',
     'https://monochrome.samdy.com',
     'https://mono.kennyy.com.br',
-    'https://lossless.wtf'
+    'https://lossless.wtf',
+    'http://localhosr:3000',
+    'https://geeked.wtf'
 ]);
 
 function corsHeaders(origin: string | null): Record<string, string> {
