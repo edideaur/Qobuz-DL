@@ -7,7 +7,7 @@ const ALLOWED_ORIGINS = new Set([
     'https://monochrome.samdy.com',
     'https://mono.kennyy.com.br',
     'https://lossless.wtf',
-    'http://localhosr:3000',
+    'http://localhost:3000',
     'https://geeked.wtf'
 ]);
 
